@@ -44,8 +44,8 @@ int main(int argc, char **argv)
         exit(1);
     }
   
-    nx=100;
-    nt=100;
+    nx=500;
+    nt=500;
     xi=-10.0;
     xf=10.0;
     ti=0.0;
@@ -109,14 +109,14 @@ int main(int argc, char **argv)
             u1[i] = nasty_one_vect(u1[i],fvect1(uhalf1[i]),fvect1(uhalf1[i-1]),dx,dt);
             u2[i] = nasty_one_vect(u2[i],fvect2(uhalf1[i],uhalf2[i],uhalf3[i],gamma),fvect2(uhalf1[i-1],uhalf2[i-1],uhalf3[i-1],gamma),dx,dt);
             u3[i] = nasty_one_vect(u3[i],fvect3(uhalf1[i],uhalf2[i],uhalf3[i],gamma),fvect3(uhalf1[i-1],uhalf2[i-1],uhalf3[i-1],gamma),dx,dt);
-            u1[0] = u1[1];
-            u2[0] = u2[1];
-            u3[0] = u3[1];
-            u1[nx-1] = u1[nx-2];
-            u2[nx-1] = u2[nx-2];
-            u3[nx-1] = u3[nx-2];
+          
         }
-       
+          u1[0] = u1[1];
+          u2[0] = u2[1];
+          u3[0] = u3[1];
+          u1[nx-1] = u1[nx-2];
+          u2[nx-1] = u2[nx-2];
+          u3[nx-1] = u3[nx-2];
       
     }
     
@@ -128,7 +128,7 @@ int main(int argc, char **argv)
         rho = u1[i];
         u = u2[i]/rho;
         p=(gamma - 1.0)*(u3[i] - 0.5*(pow(u2[i],2))/(u1[i]));
-        
+    
         fprintf(in0,"%f %f %f %f\n",x,u,p,rho);
 
     }
